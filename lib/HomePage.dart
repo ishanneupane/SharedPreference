@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:projectinternship/api.dart';
 
@@ -103,7 +103,10 @@ class _HomePageState extends State<HomePage> {
                 height: 30,
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  final SharedPreferences shared =
+                      await SharedPreferences.getInstance();
+                  shared.setString("emailid", emailid.text);
                   if (formkey.currentState!.validate()) {
                     Navigator.push(
                         context,

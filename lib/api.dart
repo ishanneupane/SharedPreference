@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:projectinternship/HomePage.dart';
-
+import 'package:projectinternship/notuesed/common_cjson.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -24,12 +25,18 @@ class _apiState extends State<api> {
     final json = jsonDecode(body);
     setState(() {
       users = json['results'];
+      saveData(body);
     });
+  }
+
+  Future<void> saveData(String body) async {
+    final SharedPreferences shared = await SharedPreferences.getInstance();
+    shared.setString("body", body);
   }
 
   @override
   void initState() {
-    fetchusers();
+    ApiService.fetchData();
     super.initState();
   }
 
@@ -119,7 +126,11 @@ class _apiState extends State<api> {
             ElevatedButton(
               style: ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(Colors.cyan)),
-              onPressed: () {
+              onPressed: () async {
+                final SharedPreferences shared =
+                    await SharedPreferences.getInstance();
+                shared.remove("emailid");
+                shared.remove("body");
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -141,7 +152,7 @@ class _apiState extends State<api> {
             itemCount: users.length,
             itemBuilder: (context, index) {
               final user = users[index];
-              final name = user['name']['first'].toString();
+              final name = user['name'].toString();
               final email = user['email'];
               return ListTile(
                 leading: CircleAvatar(child: Text('${index + 1}')),
