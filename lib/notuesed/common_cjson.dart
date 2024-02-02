@@ -14,28 +14,25 @@ class Name {
 
   factory Name.fromJson(Map<String, dynamic> json) {
     return Name(
-      title: json['title'],
-      body: json['body'],
-      id: json['id'].toString(),
+      title: json['name']['title'],
+      body: json['name']['body'],
+      id: json['id']['value'].toString(),
     );
   }
 }
 
 class ApiService {
-  static final String apiUrl =
-      'https://testing.esnep.com/eliterestro/api/acc/pub/slider';
+  static final String apiUrl = 'ur apii';
 
-  // Function to fetch data from the API and map it to the Name class
   static Future<List<Name>> fetchData() async {
     final response = await http.get(Uri.parse(apiUrl));
 
     if (response.statusCode == 200) {
-      // Parse the JSON data
-      final List<dynamic> responseData = json.decode(response.body);
-      print(responseData);
+      final Map<String, dynamic> responseData = json.decode(response.body);
+      final List<dynamic> results = responseData['results'];
+
       // Map the API data to a list of Name instances
-      List<Name> names =
-          responseData.map((json) => Name.fromJson(json)).toList();
+      List<Name> names = results.map((json) => Name.fromJson(json)).toList();
 
       return names;
     } else {
@@ -44,5 +41,4 @@ class ApiService {
       return [];
     }
   }
-  //var headers = {'Content-Type': 'application/json/p0m76'};
 }

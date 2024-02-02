@@ -4,19 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'api.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SplashScreen(),
-    );
-  }
-}
-
 var femail;
 
 class SplashScreen extends StatefulWidget {

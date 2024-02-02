@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:projectinternship/HomePage.dart';
-import 'package:projectinternship/notuesed/common_cjson.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -25,7 +24,7 @@ class _apiState extends State<api> {
     final json = jsonDecode(body);
     setState(() {
       users = json['results'];
-      saveData(body);
+      saveData(body); //net nabhako bela purano doc dekhaunae
     });
   }
 
@@ -36,7 +35,7 @@ class _apiState extends State<api> {
 
   @override
   void initState() {
-    ApiService.fetchData();
+    fetchusers();
     super.initState();
   }
 
@@ -145,31 +144,24 @@ class _apiState extends State<api> {
           ],
         ),
       ),
-      body: ListView(
-        children: [
-          Container(
-              child: ListView.builder(
-            itemCount: users.length,
-            itemBuilder: (context, index) {
-              final user = users[index];
-              final name = user['name'].toString();
-              final email = user['email'];
-              return ListTile(
-                leading: CircleAvatar(child: Text('${index + 1}')),
-                title: Text(
-                  name,
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: MediaQuery.of(context).size.height * .025),
-                ),
-                subtitle: Text(email),
-                subtitleTextStyle: TextStyle(color: Colors.green),
-              );
-            },
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-          ))
-        ],
+      body: ListView.builder(
+        itemCount: users.length,
+        itemBuilder: (context, index) {
+          final user = users[index];
+          final name = user['name'].toString();
+          final email = user['email'];
+          return ListTile(
+            leading: CircleAvatar(child: Text('${index + 1}')),
+            title: Text(
+              name,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: MediaQuery.of(context).size.height * .025),
+            ),
+            subtitle: Text(email),
+            subtitleTextStyle: TextStyle(color: Colors.green),
+          );
+        },
       ),
     );
   }

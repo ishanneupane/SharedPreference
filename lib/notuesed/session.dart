@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MySharedPreferences {
@@ -82,52 +81,5 @@ class Name {
       'first': first,
       'last': last,
     };
-  }
-}
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('SharedPreferences Example'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () async {
-                // Save user data
-                final user = User(
-                  gender: 'female',
-                  name: Name(
-                    title: 'Mademoiselle',
-                    first: 'Ornella',
-                    last: 'Simon',
-                  ),
-                );
-                await MySharedPreferences.saveUserData(user);
-              },
-              child: Text('Save User Data'),
-            ),
-            SizedBox(height: 20),
-          ],
-        ),
-      ),
-    );
   }
 }

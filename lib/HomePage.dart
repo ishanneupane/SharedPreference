@@ -1,5 +1,4 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:projectinternship/api.dart';
@@ -136,9 +135,5 @@ class _HomePageState extends State<HomePage> {
       "email": ea,
       "userId": n,
     };
-    final url = 'https://jsonplaceholder.typicode.com/posts';
-    final uri = Uri.parse(url);
-
-    final response = await http.post(uri, body: jsonEncode(body));
   }
 }
