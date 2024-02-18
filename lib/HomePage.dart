@@ -1,4 +1,3 @@
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:projectinternship/api.dart';
@@ -57,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                   if (!RegExp(r'^[a-z A-Z]+$').hasMatch(fullname!)) {
                     return 'Do not use the random char.';
                   } else if (fullname.length < 3) {
-                    return 'tooo short';
+                    return 'too short';
                   }
                   {
                     return null;

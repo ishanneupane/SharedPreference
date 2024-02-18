@@ -14,14 +14,13 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    super.initState();
-
     getPrevData().whenComplete(() async {
       Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => femail == null ? HomePage() : api()));
     });
+    super.initState();
   }
 
   @override

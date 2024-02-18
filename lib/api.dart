@@ -56,72 +56,72 @@ class _apiState extends State<api> {
         backgroundColor: Colors.grey.shade200,
         child: ListView(
           children: [
-            Text(
-              textAlign: TextAlign.center,
-              "Contact ME??",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  fontSize: 30),
-            ),
-            ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(Colors.cyan),
-              ),
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text(' Email'),
-                      content: Text(
-                          'Ishanneupane8945@gmail.com'), // Replace with your actual email
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context); // Close the dialog
-                          },
-                          child: Text('Close'),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-              child: Text(
-                'Email',
-                style: TextStyle(color: Colors.black, fontSize: 18),
-              ),
-            ),
-            ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(Colors.cyan),
-              ),
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('Phone Number'),
-                      content: Text(
-                          '9861591772\n9803541895'), // Replace with your actual email
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context); // Close the dialog
-                          },
-                          child: Text('Close'),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-              child: Text(
-                'Phone Number',
-                style: TextStyle(color: Colors.black, fontSize: 18),
-              ),
-            ),
+            // Text(
+            //   textAlign: TextAlign.center,
+            //   "Contact ME??",
+            //   style: TextStyle(
+            //       fontWeight: FontWeight.bold,
+            //       color: Colors.black,
+            //       fontSize: 30),
+            // ),
+            // ElevatedButton(
+            //   style: ButtonStyle(
+            //     backgroundColor: MaterialStatePropertyAll(Colors.cyan),
+            //   ),
+            //   onPressed: () {
+            //     showDialog(
+            //       context: context,
+            //       builder: (BuildContext context) {
+            //         return AlertDialog(
+            //           title: Text(' Email'),
+            //           content: Text(
+            //               'Ishanneupane8945@gmail.com'), // Replace with your actual email
+            //           actions: [
+            //             TextButton(
+            //               onPressed: () {
+            //                 Navigator.pop(context); // Close the dialog
+            //               },
+            //               child: Text('Close'),
+            //             ),
+            //           ],
+            //         );
+            //       },
+            //     );
+            //   },
+            //   child: Text(
+            //     'Email',
+            //     style: TextStyle(color: Colors.black, fontSize: 18),
+            //   ),
+            // ),
+            // ElevatedButton(
+            //   style: ButtonStyle(
+            //     backgroundColor: MaterialStatePropertyAll(Colors.cyan),
+            //   ),
+            //   onPressed: () {
+            //     showDialog(
+            //       context: context,
+            //       builder: (BuildContext context) {
+            //         return AlertDialog(
+            //           title: Text('Phone Number'),
+            //           content: Text(
+            //               '9861591772\n9803541895'), // Replace with your actual email
+            //           actions: [
+            //             TextButton(
+            //               onPressed: () {
+            //                 Navigator.pop(context); // Close the dialog
+            //               },
+            //               child: Text('Close'),
+            //             ),
+            //           ],
+            //         );
+            //       },
+            //     );
+            //   },
+            //   child: Text(
+            //     'Phone Number',
+            //     style: TextStyle(color: Colors.black, fontSize: 18),
+            //   ),
+            // ),
             ElevatedButton(
               style: ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(Colors.cyan)),
@@ -148,7 +148,7 @@ class _apiState extends State<api> {
         itemCount: users.length,
         itemBuilder: (context, index) {
           final user = users[index];
-          final name = user['name'].toString();
+          final name = user['name']['last'].toString();
           final email = user['email'];
           return ListTile(
             leading: CircleAvatar(child: Text('${index + 1}')),
